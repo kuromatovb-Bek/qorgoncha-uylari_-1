@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Qo'rg'oncha Uylari — Мукаммаллик Ва Ҳашамат</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --gold: #C9A84C;
+  --gold-l: #E8C97A;
+  --gold-d: #9A7A2E;
+  --black: #080808;
+  --deep: #0E0E0E;
+  --surface: #141414;
+  --surface2: #1C1C1C;
+  --border: rgba(201,168,76,0.14);
+  --text: #F0EDE8;
+  --muted: #7A7672;
+  --white: #FAFAF8;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:var(--black);color:var(--text);font-family:'Outfit',sans-serif;font-weight:300;overflow-x:hidden}
+::-webkit-scrollbar{width:3px}
+::-webkit-scrollbar-track{background:var(--black)}
+::-webkit-scrollbar-thumb{background:var(--gold);border-radius:2px}
+
+/* ── NAV ── */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:1000;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:22px 64px;
+  background:linear-gradient(to bottom,rgba(8,8,8,.95),transparent);
+  backdrop-filter:blur(14px);
+  border-bottom:1px solid rgba(201,168,76,.08);
+  transition:all .4s;
+}
+nav.scrolled{padding:14px 64px;background:rgba(8,8,8,.97);border-bottom-color:rgba(201,168,76,.18)}
+.logo{font-family:'Cormorant Garamond',serif;font-size:21px;font-weight:600;letter-spacing:.18em;color:var(--gold);text-transform:uppercase;line-height:1.1;text-decoration:none}
+.logo span{display:block;font-size:9px;font-family:'Outfit',sans-serif;font-weight:400;letter-spacing:0.45em;color:var(--muted);margin-top:3px}
+.nav-links{display:flex;gap:38px;list-style:none}
+.nav-links a{color:var(--muted);text-decoration:none;font-size:11px;font-weight:500;letter-spacing:.22em;text-transform:uppercase;transition:color .3s;position:relative}
+.nav-links a::after{content:'';position:absolute;bottom:-4px;left:0;width:0;height:1px;background:var(--gold);transition:width .3s}
+.nav-links a:hover{color:var(--gold)}
+.nav-links a:hover::after{width:100%}
+.nav-cta{padding:10px 26px;border:1px solid var(--gold);color:var(--gold);text-decoration:none;font-size:10px;font-weight:500;letter-spacing:.22em;text-transform:uppercase;transition:all .3s;position:relative;overflow:hidden}
+.nav-cta::before{content:'';position:absolute;inset:0;background:var(--gold);transform:translateX(-101%);transition:transform .3s;z-index:-1}
+.nav-cta:hover{color:var(--black)}
+.nav-cta:hover::before{transform:translateX(0)}
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:4px}
+.hamburger span{width:24px;height:1px;background:var(--gold);transition:all .3s;display:block}
+
+/* ── IMAGES ── */
+.img-bg{position:absolute;inset:0;background-size:cover;background-position:center;background-repeat:no-repeat;transition:transform .6s ease}
+
+/* ── HERO ── */
+.hero{min-height:100vh;display:flex;align-items:center;position:relative;overflow:hidden;padding:130px 64px 80px}
+/* Бу ерга 2-сурат (кўп қаватли замонавий бино) жойлаштирилди */
+.hero-img-bg{position:absolute;inset:0;background-size:cover;background-position:center;background-image:url('https://images.unsplash.com/photo-1554435493-93422e8220c8?auto=format&fit=crop&w=1600&q=80');transition:transform 8s ease}
+.hero:hover .hero-img-bg{transform:scale(1.04)}
+.hero-overlay{position:absolute;inset:0;background:linear-gradient(105deg,rgba(8,8,8,.88) 40%,rgba(8,8,8,.5) 70%,rgba(8,8,8,.2) 100%)}
+.hero-grid-lines{position:absolute;inset:0;background-image:linear-gradient(rgba(201,168,76,.025) 1px,transparent 1px),linear-gradient(90deg,rgba(201,168,76,.025) 1px,transparent 1px);background-size:70px 70px;mask-image:radial-gradient(ellipse at 30% 50%,black 30%,transparent 75%)}
+.hero-content{position:relative;z-index:3;max-width:680px}
+.badge{display:inline-flex;align-items:center;gap:8px;padding:7px 18px;border:1px solid rgba(201,168,76,.28);background:rgba(201,168,76,.06);font-size:10px;letter-spacing:.32em;text-transform:uppercase;color:var(--gold);margin-bottom:36px;animation:fadeDown 1s ease .2s both}
+.hero h1{font-family:'Cormorant Garamond',serif;font-size:clamp(50px,7vw,88px);font-weight:300;line-height:1.05;margin-bottom:28px;animation:fadeDown 1s ease .4s both}
+.hero h1 em{font-style:italic;color:var(--gold)}
+.hero p{font-size:15px;line-height:1.85;color:rgba(240,237,232,.6);max-width:480px;margin-bottom:48px;animation:fadeDown 1s ease .6s both}
+.hero-btns{display:flex;gap:18px;flex-wrap:wrap;animation:fadeDown 1s ease .8s both}
+.btn-gold{padding:15px 38px;background:var(--gold);color:var(--black);text-decoration:none;font-size:11px;font-weight:600;letter-spacing:.22em;text-transform:uppercase;transition:all .3s}
+.btn-gold:hover{background:var(--gold-l);transform:translateY(-2px);box-shadow:0 18px 40px rgba(201,168,76,.28)}
+.btn-outline{padding:15px 38px;border:1px solid rgba(201,168,76,.38);color:var(--text);text-decoration:none;font-size:11px;font-weight:400;letter-spacing: .22em;text-transform:uppercase;transition:all .3s;display:flex;align-items:center;gap:10px}
+.btn-outline:hover{border-color:var(--gold);color:var(--gold);transform:translateY(-2px)}
+
+/* ── STATS ── */
+.stats{padding:72px 64px;background:var(--surface);border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
+.stats-row{display:flex;justify-content:space-between;align-items:center;max-width:1100px;margin:0 auto;gap:20px}
+.stat{text-align:center;flex:1;position:relative}
+.stat::after{content:'';position:absolute;right:0;top:18%;height:64%;width:1px;background:rgba(201,168,76,.12)}
+.stat:last-child::after{display:none}
+.stat-n{font-family:'Cormorant Garamond',serif;font-size:54px;font-weight:300;color:var(--gold);line-height:1;margin-bottom:8px}
+.stat-l{font-size:10px;letter-spacing:.28em;text-transform:uppercase;color:var(--muted)}
+
+/* ── SECTION LABELS ── */
+.stag{font-size:10px;letter-spacing:.38em;text-transform:uppercase;color:var(--gold);margin-bottom:14px;display:flex;align-items:center;gap:12px}
+.stag::before{content:'';width:28px;height:1px;background:var(--gold);display:block;flex-shrink:0}
+.stitle{font-family:'Cormorant Garamond',serif;font-size:clamp(34px,5vw,60px);font-weight:300;line-height:1.08;margin-bottom:16px}
+.stitle em{font-style:italic;color:var(--gold)}
+
+/* ── FLAGSHIP ── */
+.flagship{padding:110px 64px;max-width:1400px;margin:0 auto}
+.flagship-grid{display:grid;grid-template-columns:1.1fr 1fr;gap:0;align-items:stretch}
+
+/* left = image */
+.flagship-img-wrap{position:relative;min-height:580px;overflow:hidden;background:var(--surface2)}
+.flagship-img-wrap .img-bg{position:absolute;inset:0;background-size:cover;background-position:center;background-image:url('https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&w=1000&q=80');transition:transform .6s}
+.flagship-img-wrap:hover .img-bg{transform:scale(1.04)}
+.flagship-overlay{position:absolute;inset:0;background:linear-gradient(to right,rgba(8,8,8,.18),rgba(8,8,8,.04));pointer-events:none;z-index:2}
+.flagship-corner{position:absolute;top:24px;left:24px;z-index:3;padding:6px 14px;background:rgba(201,168,76,.9);color:var(--black);font-size:10px;font-weight:600;letter-spacing:.25em;text-transform:uppercase}
+
+/* right = content */
+.flagship-info{background:var(--surface);padding:60px 54px;display:flex;flex-direction:column;justify-content:center}
+.flagship-badge{display:inline-block;padding:5px 14px;background:rgba(201,168,76,.1);border:1px solid rgba(201,168,76,.22);font-size:10px;letter-spacing:.3em;text-transform:uppercase;color:var(--gold);margin-bottom:18px}
+.flagship-title{font-family:'Cormorant Garamond',serif;font-size:38px;font-weight:300;color:var(--white);line-height:1.15;margin-bottom:8px}
+.flagship-sub{font-family:'Cormorant Garamond',serif;font-size:22px;font-style:italic;color:var(--gold);margin-bottom:28px}
+.flagship-desc{font-size:14px;line-height:1.95;color:rgba(240,237,232,.6);margin-bottom:36px;padding-left:18px;border-left:2px solid rgba(201,168,76,.28)}
+.progress-wrap{margin-bottom:36px}
+.progress-labels{display:flex;justify-content:space-between;font-size:11px;letter-spacing:.08em;color:var(--muted);margin-bottom:10px}
+.progress-labels strong{color:var(--gold)}
+.pbar{height:2px;background:rgba(255,255,255,.07);position:relative;overflow:visible}
+.pfill{height:100%;width:78%;background:linear-gradient(90deg,var(--gold-d),var(--gold-l));position:relative}
+.pfill::after{content:'';position:absolute;right:-4px;top:-4px;width:10px;height:10px;border-radius:50%;background:var(--gold-l);box-shadow:0 0 14px var(--gold)}
+.deadline{font-size:12px;color:var(--muted);margin-bottom:34px;display:flex;align-items:center;gap:8px}
+.specs{display:flex;gap:36px;margin-bottom:38px;padding-bottom:38px;border-bottom:1px solid var(--border)}
+.spec-item .snum{font-family:'Cormorant Garamond',serif;font-size:42px;font-weight:300;color:var(--gold);line-height:1}
+.spec-item .sunit{font-size:14px;color:var(--gold)}
+.spec-item .slabel{font-size:10px;letter-spacing: .22em;text-transform:uppercase;color:var(--muted);margin-top:4px}
+.flagship-btns{display:flex;gap:14px;flex-wrap:wrap}
+.btn-wa{padding:13px 26px;background:rgba(37,211,102,.1);border:1px solid rgba(37,211,102,.28);color:#25D366;text-decoration:none;font-size:10px;font-weight:500;letter-spacing: .16em;text-transform:uppercase;transition:all .3s;display:flex;align-items:center;gap:8px}
+.btn-wa:hover{background:rgba(37,211,102,.18);transform:translateY(-2px)}
+.btn-call2{padding:13px 26px;border:1px solid var(--border);color:var(--text);text-decoration:none;font-size:10px;font-weight:400;letter-spacing: .16em;text-transform:uppercase;transition:all .3s;display:flex;align-items:center;gap:8px}
+.btn-call2:hover{border-color:var(--gold);color:var(--gold);transform:translateY(-2px)}
+
+/* ── CATALOG ── */
+.catalog{padding:100px 64px;background:var(--surface)}
+.catalog-head{max-width:1200px;margin:0 auto 52px;display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:16px}
+.catalog-grid{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:repeat(3,1fr);gap:3px}
+.cat-card{position:relative;height:340px;overflow:hidden;cursor:pointer;background:var(--surface2)}
+.cat-card .img-bg{position:absolute;inset:0;background-size:cover;background-position:center;transition:transform .6s}
+.cat-card:hover .img-bg{transform:scale(1.06)}
+.cat-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.88) 0%,rgba(0,0,0,.2) 55%,transparent 100%);transition:background .4s;z-index:2}
+.cat-card:hover .cat-overlay{background:linear-gradient(to top,rgba(0,0,0,.92) 0%,rgba(0,0,0,.38) 55%,rgba(201,168,76,.04) 100%)}
+.cat-num{position:absolute;top:18px;right:18px;font-family:'Cormorant Garamond',serif;font-size:46px;font-weight:300;color:rgba(201,168,76,.18);line-height:1;z-index:3}
+.cat-info{position:absolute;bottom:0;left:0;right:0;padding:28px;z-index:3}
+.cat-title{font-family:'Cormorant Garamond',serif;font-size:26px;font-weight:400;color:var(--white);margin-bottom:12px}
+.cat-btn{display:inline-flex;align-items:center;gap:7px;padding:8px 18px;border:1px solid rgba(201,168,76,.38);color:var(--gold);font-size:10px;letter-spacing:.2em;text-transform:uppercase;text-decoration:none;background:transparent;cursor:pointer;transform:translateY(8px);opacity:0;transition:all .3s}
+.cat-card:hover .cat-btn{transform:translateY(0);opacity:1}
+
+/* ── SERVICES ── */
+.services{padding:100px 64px}
+.services-inner{max-width:1200px;margin:0 auto}
+.svc-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:2px;margin-top:56px}
+.svc-card{background:var(--surface);padding:48px 34px;position:relative;overflow:hidden;border-top:2px solid transparent;transition:all .35s}
+.svc-card:hover{border-top-color:var(--gold);transform:translateY(-6px)}
+.svc-icon{font-size:28px;margin-bottom:22px;display:block}
+.svc-title{font-family:'Cormorant Garamond',serif;font-size:24px;font-weight:400;color:var(--white);margin-bottom:14px}
+.svc-desc{font-size:13px;line-height:1.85;color:var(--muted)}
+.svc-num{position:absolute;bottom:16px;right:22px;font-family:'Cormorant Garamond',serif;font-size:62px;font-weight:300;color:rgba(201,168,76,.055);line-height:1}
+
+/* ── TESTIMONIALS ── */
+.testim{padding:100px 64px;max-width:1200px;margin:0 auto}
+.testim-grid{display:grid;grid-template-columns:1fr 1fr;gap:28px;margin-top:56px}
+.tcard{background:var(--surface);border:1px solid var(--border);padding:46px;position:relative}
+.tcard::before{content:'"';position:absolute;top:16px;left:32px;font-family:'Cormorant Garamond',serif;font-size:80px;color:rgba(201,168,76,.13);line-height:1}
+.stars{margin-bottom:22px;font-size:14px;color:var(--gold);letter-spacing:3px}
+.ttext{font-size:15px;line-height:1.85;color:rgba(240,237,232,.6);font-style:italic;margin-bottom:28px}
+.tauthor{display:flex;align-items:center;gap:16px}
+.tavatar{width:46px;height:46px;border-radius:50%;background:linear-gradient(135deg,var(--gold-d),var(--gold));display:flex;align-items:center;justify-content:center;font-family:'Cormorant Garamond',serif;font-size:20px;color:var(--black);font-weight:600;flex-shrink:0}
+.tname{font-weight:500;font-size:14px;color:var(--white);margin-bottom:3px}
+.trole{font-size:10px;letter-spacing:.16em;color:var(--muted);text-transform:uppercase}
+
+/* ── CONTACT ── */
+.contact{padding:110px 64px;background:var(--surface);position:relative;overflow:hidden}
+.contact::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,var(--gold),transparent)}
+.contact-glow{position:absolute;inset:0;background:radial-gradient(ellipse 55% 70% at 78% 50%,rgba(201,168,76,.05) 0%,transparent 70%);pointer-events:none}
+.contact-grid{max-width:1200px;margin:0 auto;position:relative;z-index:2;display:grid;grid-template-columns:1fr 1.2fr;gap:90px;align-items:start}
+.contact-left h2{font-family:'Cormorant Garamond',serif;font-size:clamp(38px,5vw,60px);font-weight:300;line-height:1.1;margin-bottom:18px}
+.contact-left h2 em{font-style:italic;color:var(--gold)}
+.contact-left p{font-size:14px;line-height:1.85;color:var(--muted);margin-bottom:46px}
+.cinfo-list{display:flex;flex-direction:column;gap:18px}
+.cinfo-item{display:flex;align-items:center;gap:15px;font-size:14px;color:var(--muted);transition:color .3s;text-decoration:none}
+.cinfo-item:hover{color:var(--text)}
+.cicon{width:40px;height:40px;border:1px solid rgba(201,168,76,.18);display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0;transition:all .3s}
+.cinfo-item:hover .cicon{border-color:var(--gold);background:rgba(201,168,76,.07)}
+.wa-btn{display:inline-flex;align-items:center;gap:10px;padding:13px 30px;background:rgba(37,211,102,.1);border:1px solid rgba(37,211,102,.28);color:#25D366;text-decoration:none;font-size:10px;font-weight:500;letter-spacing: .2em;text-transform:uppercase;margin-top:28px;transition:all .3s}
+.wa-btn:hover{background:rgba(37,211,102,.18);transform:translateY(-2px)}
+.cform{display:flex;flex-direction:column;gap:18px}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.fgroup{display:flex;flex-direction:column;gap:7px}
+.flabel{font-size:9px;letter-spacing: .28em;text-transform:uppercase;color:var(--muted)}
+.finput,.ftarea{background:rgba(255,255,255,.025);border:1px solid rgba(201,168,76,.14);color:var(--text);padding:13px 17px;font-family:'Outfit',sans-serif;font-size:14px;font-weight:300;outline:none;transition:border-color .3s;width:100%}
+.finput:focus,.ftarea:focus{border-color:var(--gold);background:rgba(201,168,76,.03)}
+.finput::placeholder,.ftarea::placeholder{color:rgba(122,118,114,.45);font-size:12px}
+.ftarea{resize:vertical;min-height:110px}
+.fsubmit{padding:16px 46px;background:var(--gold);color:var(--black);border:none;font-family:'Outfit',sans-serif;font-size:11px;font-weight:700;letter-spacing:.25em;text-transform:uppercase;cursor:pointer;transition:all .3s;align-self:flex-start}
+.fsubmit:hover{background:var(--gold-l);transform:translateY(-2px);box-shadow:0 18px 40px rgba(201,168,76,.3)}
+
+/* ── FOOTER ── */
+footer{padding:36px 64px;background:var(--black);border-top:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:18px}
+.foot-logo{font-family:'Cormorant Garamond',serif;font-size:17px;font-weight:600;color:var(--gold);letter-spacing:.18em;text-transform:uppercase}
+.foot-copy{font-size:12px;color:var(--muted);text-align:center}
+
+/* ── DIVIDER ── */
+.divider{height:1px;background:linear-gradient(90deg,transparent,rgba(201,168,76,.18),transparent);margin:0 64px}
+
+/* ── SCROLL REVEAL ── */
+.sr{opacity:0;transform:translateY(28px);transition:opacity .8s ease,transform .8s ease}
+.sr.vis{opacity:1;transform:translateY(0)}
+
+/* ── ANIMATIONS ── */
+@keyframes fadeDown{from{opacity:0;transform:translateY(-18px)}to{opacity:1;transform:translateY(0)}}
+
+/* ── RESPONSIVE ── */
+@media(max-width:1100px){
+  nav,nav.scrolled{padding:18px 32px}
+  .hero{padding:120px 32px 80px}
+  .flagship{padding:80px 32px}
+  .flagship-grid{grid-template-columns:1fr;grid-template-rows:auto auto}
+  .flagship-img-wrap{min-height:380px}
+  .catalog{padding:80px 32px}
+  .catalog-grid{grid-template-columns:repeat(2,1fr)}
+  .services{padding:80px 32px}
+  .svc-grid{grid-template-columns:repeat(2,1fr)}
+  .testim{padding:80px 32px}
+  .contact{padding:80px 32px}
+  .contact-grid{grid-template-columns:1fr;gap:50px}
+  footer{padding:28px 32px}
+  .stats{padding:60px 32px}
+  .stats-row{flex-wrap:wrap}
+  .stat{flex:1 1 40%}
+  .stat::after{display:none}
+  .divider{margin:0 32px}
+}
+@media(max-width:700px){
+  .nav-links,.nav-cta{display:none}
+  .hamburger{display:flex}
+  .hero h1{font-size:44px}
+  .catalog-grid{grid-template-columns:1fr}
+  .svc-grid{grid-template-columns:1fr}
+  .testim-grid{grid-template-columns:1fr}
+  .form-row{grid-template-columns:1fr}
+  .hero-btns{flex-direction:column}
+  .flagship-info{padding:40px 28px}
+  .specs{gap:20px}
+  .flagship-btns{flex-direction:column}
+}
+</style>
+</head>
+<body>
+
+<nav id="navbar">
+  <a href="#hero" class="logo">Qo'rg'oncha Uylari<span>Premium Real Estate</span></a>
+  <ul class="nav-links">
+    <li><a href="#hero">ЯНГИ</a></li>
+    <li><a href="#catalog">ДОМЛАР</a></li>
+    <li><a href="#flagship">ЛОЙИҲАЛАР</a></li>
+    <li><a href="#services">ХИЗМАТЛАР</a></li>
+    <li><a href="#contact">АЛОҚА</a></li>
+  </ul>
+  <a href="#contact" class="nav-cta">Консультация</a>
+  <div class="hamburger" onclick="toggleMenu()"><span></span><span></span><span></span></div>
+</nav>
+
+<section class="hero" id="hero">
+  <div class="hero-img-bg" id="heroBg"></div>
+  <div class="hero-overlay"></div>
+  <div class="hero-grid-lines"></div>
+
+  <div class="hero-content">
+    <div class="badge">✨ ЯНГИ ДАВР МЕЪМОРЧИЛИГИ</div>
+    <h1>Мукаммаллик<br>Ва <em>Ҳашамат</em><br>Синоними</h1>
+    <p>Qo'rg'oncha uylari — нафақат бинолар, балки келажак меросини қуради. Қўрғончанинг энг нуфузли нуқталарида премиум классдаги кўчмас мулк лойиҳалари.</p>
+    <div class="hero-btns">
+      <a href="#flagship" class="btn-gold">Лойиҳаларни кўриш</a>
+      <a href="https://wa.me/79919648225" target="_blank" class="btn-outline">💬 Раҳбар билан алоқа</a>
+    </div>
+  </div>
+</section>
+
+<section class="stats">
+  <div class="stats-row">
+    <div class="stat sr"><div class="stat-n">12M+</div><div class="stat-l">Инвестиция ($)</div></div>
+    <div class="stat sr" style="transition-delay:.1s"><div class="stat-n">450+</div><div class="stat-l">Бахтли оилалар</div></div>
+    <div class="stat sr" style="transition-delay:.2s"><div class="stat-n">99%</div><div class="stat-l">Кафолат ва сифат</div></div>
+    <div class="stat sr" style="transition-delay:.3s"><div class="stat-n">2026</div><div class="stat-l">Топширилиш йили</div></div>
+  </div>
+</section>
+
+<section class="flagship" id="flagship">
+  <div class="flagship-grid">
+    <div class="flagship-img-wrap">
+      <div class="img-bg" id="flagshipBg"></div>
+      <div class="flagship-overlay"></div>
+      <div class="flagship-corner">Премиум Резиденция</div>
+    </div>
+    <div class="flagship-info sr" style="transition-delay:.15s">
+      <div class="stag">ТАНЛАБ ОЛИНГАН</div>
+      <div class="stitle" style="margin-bottom:8px">Асосий <em>Лойиҳамиз</em></div>
+      <div class="flagship-badge">Флагман лойиҳа</div>
+      <div class="flagship-title">Qo'rg'oncha Grand Tower</div>
+      <div class="flagship-sub">Ультра-замонавий мажмуа</div>
+      <p class="flagship-desc">Қўрғонча марказида қад кўтараётган 45 қаватли ультра-замонавий мажмуа. Кенг панорамали ойналар, шахсий террасалар, ер ости автотураргоҳи ва 5 юлдузли консьерж хизмати. Дунё стандартларига жавоб берувчи меъморчилик, ақлли уй технологиялари ва бетакрор хизмат — ҳаммаси бир жойда.</p>
+      <div class="progress-wrap">
+        <div class="progress-labels"><span>Қурилиш жараёни</span><strong>78%</strong></div>
+        <div class="pbar"><div class="pfill"></div></div>
+      </div>
+      <div class="deadline">📅 Топширилиш муддати: 2026 йил IV чорак</div>
+      <div class="specs">
+        <div class="spec-item"><div class="snum">45</div><div class="slabel">Қават</div></div>
+        <div class="spec-item"><div class="snum">320</div><div class="slabel">Хонадон</div></div>
+        <div class="spec-item"><div class="snum">5<span class="sunit">★</span></div><div class="slabel">Сервис</div></div>
+      </div>
+      <div class="flagship-btns">
+        <a href="https://wa.me/79919648225" target="_blank" class="btn-wa">🟢 WhatsApp</a>
+        <a href="tel:+79919648225" class="btn-call2">📞 Қўнғироқ</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<section class="catalog" id="catalog">
+  <div class="catalog-head">
+    <div>
+      <div class="stag">ИМКОНИЯТЛАР</div>
+      <div class="stitle">Premium <em>Domlar</em></div>
+    </div>
+  </div>
+  <div class="catalog-grid" id="catalogGrid"></div>
+</section>
+
+<div class="divider"></div>
+
+<section class="services" id="services">
+  <div class="services-inner">
+    <div class="stag">ХИЗМАТЛАР</div>
+    <div class="stitle">Биз тақдим этадиган <em>хизматлар</em></div>
+    <div class="svc-grid">
+      <div class="svc-card sr"><span class="svc-icon">🏛️</span><h3 class="svc-title">Лойиҳалаш</h3><p class="svc-desc">Энг замонавий меъморий ечимлар асосида бинолар архитектоникасини яратиш.</p><span class="svc-num">01</span></div>
+      <div class="svc-card sr" style="transition-delay:.1s"><span class="svc-icon">🎨</span><h3 class="svc-title">Интерьер Дизайн</h3><p class="svc-desc">Премиум материаллардан фойдаланган ҳолда муаллифлик ички дизайн лойиҳалари.</p><span class="svc-num">02</span></div>
+      <div class="svc-card sr" style="transition-delay:.2s"><span class="svc-icon">🏗️</span><h3 class="svc-title">Юқори Сифатли Қурилиш</h3><p class="svc-desc">Темир-бетон ва тош конструкцияларнинг мустаҳкамлигига 100% кафолат берамиз.</p><span class="svc-num">03</span></div>
+      <div class="svc-card sr" style="transition-delay:.3s"><span class="svc-icon">📱</span><h3 class="svc-title">Smart Home Тизими</h3><p class="svc-desc">Уйингизни дунёнинг исталган нуқтасидан туриб телефон орқали бошқариш тизими.</p><span class="svc-num">04</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="testim">
+  <div class="stag">МИЖОЗЛАР</div>
+  <div class="stitle">Визионлар <em>Ишончига</em> Сазовор</div>
+  <p style="font-size:13px;color:var(--muted);margin-top:6px">Харидорларимиз фикри</p>
+  <div class="testim-grid">
+    <div class="tcard sr">
+      <div class="stars">★★★★★</div>
+      <p class="ttext">Qo'rg'oncha uylari компаниясидан харид қилган хонадонимиз сифати жуда юқори. Деворлар изоляцияси ва иситиш тизимлари мукаммал ишланган. Премиум хизмат учун миннатдормиз!</p>
+      <div class="tauthor"><div class="tavatar">А</div><div><div class="tname">Азизхўжа Комилов</div><div class="trole">Бизнесмен / Инвестор</div></div></div>
+    </div>
+    <div class="tcard sr" style="transition-delay:.15s">
+      <div class="stars">★★★★<span style="opacity:.3">★</span></div>
+      <p class="ttext">Архитектура ва ташқи кўринишга гап бўлиши мумкин эмас, ҳақиқий Европа услуби. Қурилиш графиги бўйича ишлар ўз вақтида кетмоқда, операторлар жуда профессионал.</p>
+      <div class="tauthor"><div class="tavatar">С</div><div><div class="tname">Сардор Тўраев</div><div class="trole">Хонадон соҳиби</div></div></div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<section class="contact" id="contact">
+  <div class="contact-glow"></div>
+  <div class="contact-grid">
+    <div class="sr">
+      <div class="stag">АЛОҚА</div>
+      <h2 class="contact-left"><em>Меросингизни</em><br>Бошланг</h2>
+      <p style="font-size:14px;line-height:1.85;color:var(--muted);margin-bottom:46px;margin-top:16px">Шахсий консультация олинг. Маълумотларингизни қолдиринг ва менежерларимиз 15 дақиқа ичида сиз билан боғланишади.</p>
+      <div class="cinfo-list">
+        <a href="tel:+79919648225" class="cinfo-item"><div class="cicon">📞</div>+7 991 964-82-25</a>
+        <div class="cinfo-item"><div class="cicon">📍</div>Хўжанд ш., Қўрғонча Қишлоғи</div>
+      </div>
+      <a href="https://wa.me/79919648225" target="_blank" class="wa-btn">🟢 WHATSAPP ОРҚАЛИ</a>
+    </div>
+    <div class="cform sr" style="transition-delay:.2s">
+      <div class="form-row">
+        <div class="fgroup"><label class="flabel">Исм</label><input type="text" class="finput" placeholder="Исмингиз"></div>
+        <div class="fgroup"><label class="flabel">Фамилия</label><input type="text" class="finput" placeholder="Фамилиянгиз"></div>
+      </div>
+      <div class="fgroup"><label class="flabel">Telephone Рақам</label><input type="tel" class="finput" placeholder="+7 ___ ___ __ __"></div>
+      <div class="fgroup"><label class="flabel">Email Манзил</label><input type="email" class="finput" placeholder="email@example.com"></div>
+      <div class="fgroup"><label class="flabel">Хабарингиз</label><textarea class="ftarea" placeholder="Хонадон майдони ёки тўлов шартлари ҳақида..."></textarea></div>
+      <button class="fsubmit" onclick="submitForm(this)">ХАБАР ЮБОРИШ</button>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="foot-logo">Qo'rg'oncha Uylari</div>
+  <div class="foot-copy">© 2026 Барча ҳуқуқлар ҳимояланган.<br>Қўрғонча, Тоҷикистон.</div>
+</footer>
+
+<script>
+// ─── CATALOG DATA ───────────────────────────────────────────────
+const catalogItems = [
+  { id: 'c1', title: 'Oila Villa', img: 'https://images.unsplash.com/photo-1613490493576-7fde63acd811?auto=format&fit=crop&w=600&q=80' },
+  { id: 'c2', title: 'Shahar Residence', img: 'https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=600&q=80' },
+  { id: 'c3', title: 'Qulay Villa', img: 'https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=600&q=80' },
+  { id: 'c4', title: 'Zamonaviy Hovli', img: 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=600&q=80' },
+  { id: 'c5', title: "Bag'rida Tabiat", img: 'https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&w=600&q=80' },
+  { id: 'c6', title: 'Gidro Residence', img: 'https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?auto=format&fit=crop&w=600&q=80' },
+];
+
+function buildCatalog() {
+  const grid = document.getElementById('catalogGrid');
+  catalogItems.forEach((item, i) => {
+    grid.innerHTML += `
+      <div class="cat-card sr" style="transition-delay:${(i%3)*0.1}s" id="card_${item.id}">
+        <div class="img-bg" id="bg_${item.id}" style="background-image: url('${item.img}')"></div>
+        <div class="cat-overlay"></div>
+        <div class="cat-num">0${i+1}</div>
+        <div class="cat-info">
+          <h3 class="cat-title">${item.title}</h3>
+          <a href="#contact" class="cat-btn">Батафсил →</a>
+        </div>
+      </div>`;
+  });
+  document.querySelectorAll('.sr:not(.vis)').forEach(el => observer.observe(el));
+}
+
+// ─── SCROLL REVEAL ────────────────────────────────────────────
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) { e.target.classList.add('vis'); observer.unobserve(e.target); }
+  });
+}, { threshold: 0.1 });
+document.querySelectorAll('.sr').forEach(el => observer.observe(el));
+
+// ─── NAV SCROLL ───────────────────────────────────────────────
+window.addEventListener('scroll', () => {
+  document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 60);
+});
+
+// ─── MOBILE MENU ─────────────────────────────────────────────
+function toggleMenu() {
+  const links = document.querySelector('.nav-links');
+  const open = links.style.display === 'flex';
+  links.style.display = open ? 'none' : 'flex';
+  if (!open) {
+    Object.assign(links.style, {
+      flexDirection: 'column', position: 'fixed',
+      top: '64px', left: '0', right: '0',
+      background: 'rgba(8,8,8,.97)', padding: '28px 36px',
+      gap: '20px', borderBottom: '1px solid rgba(201,168,76,.18)', zIndex: '999'
+    });
+  }
+}
+
+// ─── FORM SUBMIT ─────────────────────────────────────────────
+function submitForm(btn) {
+  btn.textContent = 'ЮБОРИЛДИ ✓';
+  btn.style.background = 'rgba(37,211,102,.75)';
+  setTimeout(() => { btn.textContent = 'ХАБАР ЮБОРИШ'; btn.style.background = ''; }, 3500);
+}
+
+// ─── SMOOTH ANCHORS ───────────────────────────────────────────
+document.querySelectorAll('a[href^="#"]').forEach(a => {
+  a.addEventListener('click', e => {
+    const t = document.querySelector(a.getAttribute('href'));
+    if (t) { e.preventDefault(); t.scrollIntoView({ behavior: 'smooth' }); }
+  });
+});
+
+// ─── INIT ────────────────────────────────────────────────────
+buildCatalog();
+</script>
+</body>
+                                       </html>
